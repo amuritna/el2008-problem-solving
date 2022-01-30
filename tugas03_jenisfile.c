@@ -6,8 +6,8 @@
 #include <string.h>
 
 int main() {
-
-    // inisialisasi
+	
+	// inisialisasi
 	FILE *fileToRead;
 
 	int detectedJPG, detectedPDF;
@@ -19,7 +19,7 @@ int main() {
 	printf("Masukkan nama file (max 100 karakter) (contoh: sample.pdf):\t");
 	scanf("%s", &fileName);
 
-    // buka dan file
+	// buka dan file
 	fileToRead = fopen(fileName, "rb");
 	fread(fileHeader, sizeof(fileHeader), 1, fileToRead);
 
