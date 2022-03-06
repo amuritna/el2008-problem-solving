@@ -6,7 +6,13 @@ Anggota kelompok:
 3. M. Zharif Fadhil (18319012)
 4. Rafli Fikri A. (13219040)
 5. Reynaldo Averill A. (13219071)
-Program digunakan untuk menyimulasikan algoritma dijkstra yang digunakan pada pemetaan tanaman di kebun raya purwodadi.*/
+Program digunakan untuk menyimulasikan algoritma dijkstra yang digunakan pada pemetaan tanaman di kebun raya purwodadi.
+
+06/03/2022:
+Diunduh, dianotasi, dan dimodifikasi
+oleh Emmanuella P. Rumanti (13220031)
+untuk Tugas 4 PMC Kelas 01 EL2008
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -58,70 +64,73 @@ int idx_process(int n, int jarak_final[n], bool is_final[n]){
 }
 
 int main (){
-    char namafile_tanaman[max_len]; 
-    // Input file tanaman
-    printf("Selamat datang di database kebun raya purwodadi.\n");
-    printf("Silahkan masukkan nama file database nama tanaman di kebun: ");
-    scanf("%s",&namafile_tanaman);
-    FILE* fp_tanaman = fopen(namafile_tanaman,"r");
+    char namafile_kota[max_len];
+    // Input file kota
+    printf("Silahkan masukkan nama file database nama kota: ");
 
-    // Baca isi file tanaman
+    // Input nama file
+    scanf("%s",&namafile_kota);
+
+    // Buka file
+    FILE* fp_kota = fopen(namafile_kota,"r");
+
+    // Baca isi file kota
     char baris[max_len];
     char* token;
-    int n_tanaman=0;
-    char nama_tanaman[node_max][max_len];
-    while (fgets(baris, max_len, fp_tanaman)){
+    int n_kota=0;
+    char nama_kota[node_max][max_len];
+    while (fgets(baris, max_len, fp_kota)){
         token = strtok(baris,"\n");
-        strcpy(nama_tanaman[n_tanaman],token);
-        n_tanaman += 1;
+        strcpy(nama_kota[n_kota],token);
+        n_kota += 1;
     }
-    printf("Pembacaan nama tanaman di kebun raya purwodadi berhasil.\n");
-    printf("Terdapat %d tanaman di lokasi yang berbeda\n",n_tanaman);
-    // Input graph (berisi jarak masing-masing tanaman). -1 atau 2147483647=INT_MAX menyatakan tak hingga.
-    printf("Silahkan masukkan nama file yang berisi jarak masing-masing tanaman: ");
+    printf("Pembacaan nama kota berhasil.\n");
+    printf("Terdapat %d kota di lokasi yang berbeda\n",n_kota);
+    // Input graph (berisi jarak masing-masing kota). -1 atau 2147483647=INT_MAX menyatakan tak hingga.
+    printf("Silahkan masukkan nama file yang berisi jarak masing-masing kota: ");
     char namafile_graph[max_len];
     scanf("%s",&namafile_graph);
     // File eksternal berbentuk matriks segitiga bawah
-    int graph_tanaman[n_tanaman][n_tanaman]; 
+    int graph_kota[n_kota][n_kota];
     int j=0,k;
-    FILE* fp_jarak_tanaman = fopen(namafile_graph,"r");
-    while (fgets(baris, max_len, fp_jarak_tanaman)){
+    FILE* fp_jarak_kota = fopen(namafile_graph,"r");
+    while (fgets(baris, max_len, fp_jarak_kota)){
         k=0;
         token = strtok(baris," ");
         while (token != NULL) {
-            graph_tanaman[j][k] = atoi(token);
-            graph_tanaman[k][j] = atoi(token);
+            graph_kota[j][k] = atoi(token);
+            graph_kota[k][j] = atoi(token);
             if(atoi(token)==-1){
-                graph_tanaman[j][k] = int_max;
-                graph_tanaman[k][j] = int_max;
+                graph_kota[j][k] = int_max;
+                graph_kota[k][j] = int_max;
             }
             k+=1;
             token = strtok(NULL," ");
         }
         j+=1;
     }
-    printf("Pembacaan jarak antar tanaman berhasil dilakukan.\n\n");
-    //printgraph(n_tanaman,graph_tanaman);
+    printf("Pembacaan jarak antar kota berhasil dilakukan.\n\n");
+    //printgraph(n_kota,graph_kota);
     char progress='y';
     while(progress=='y'){
         // Pembacaan vertex awal dan akhir
         int idx_awal, idx_tujuan;
-        printf("\nBerikut adalah daftar tamanan yang berada di Kebun Raya Purwodadi.\n");
-        for(int i=1;i<=n_tanaman;i++){
-            printf("%d. %s\n",i,nama_tanaman[i-1]);
+        printf("\nBerikut adalah daftar kota yang berada pada database.\n");
+        for(int i=1;i<=n_kota;i++){
+            printf("%d. %s\n",i,nama_kota[i-1]);
         }
-        printf("\nPilih salah satu tanaman sebagai posisi awal (Cukup ketik angka saja): ");
+        printf("\nPilih salah satu kota sebagai posisi awal (Cukup ketik angka saja): ");
         scanf(" %d",&idx_awal);
         idx_awal-=1;
-        printf("Pilih salah satu tanaman sebagai tujuan (Cukup ketik angka saja): ");
+        printf("Pilih salah satu kota sebagai tujuan (Cukup ketik angka saja): ");
         scanf(" %d",&idx_tujuan);
         idx_tujuan-=1;
-        int jarak_final[n_tanaman]; //Jarak akhir ke masing2 pohon, akan di update terus sesuai jarak yang ditemukan
-        bool is_final[n_tanaman]; //Memberikan keterangan apakah jarak sudah minimum
-        int list_dilalui[n_tanaman][n_tanaman+1]; //Indeks yang dilalui hingga mencapai tujuan
-        int idx_dilalui[n_tanaman]; //Mencatat jumlah vertex yang dilalui pada list_dilalui
-        //Algoritma Dijsktra  
-        for(int i=0;i<n_tanaman;i++){
+        int jarak_final[n_kota]; //Jarak akhir ke masing2 pohon, akan di update terus sesuai jarak yang ditemukan
+        bool is_final[n_kota]; //Memberikan keterangan apakah jarak sudah minimum
+        int list_dilalui[n_kota][n_kota+1]; //Indeks yang dilalui hingga mencapai tujuan
+        int idx_dilalui[n_kota]; //Mencatat jumlah vertex yang dilalui pada list_dilalui
+        //Algoritma Dijsktra
+        for(int i=0;i<n_kota;i++){
             //Set jarak menjadi tak hingga pada seluruh vertex selain vertex awal dan
             if(i==idx_awal){
                 jarak_final[i]=0;
@@ -132,7 +141,7 @@ int main (){
                 is_final[i]=false;
             }
             //Set list dilalui menjadi no vertex (dilambangkan dengan int_max)
-            for(int j=0;j<=n_tanaman;j++){
+            for(int j=0;j<=n_kota;j++){
                 list_dilalui[i][j]=int_max;
             }
             idx_dilalui[i]=0;
@@ -146,11 +155,11 @@ int main (){
         while(idx_now!=int_max){
             is_final[idx_now]=true;
             //printf("idx process = %d\n",idx_now);
-            for(int i = 0;i<n_tanaman;i++){
-                //Update nilai saat jarak lebih pendek 
-                if(!is_final[i] && (graph_tanaman[idx_now][i]!=int_max) && 
-                (jarak_final[idx_now]+graph_tanaman[idx_now][i]<jarak_final[i])){
-                    jarak_final[i] = jarak_final[idx_now]+graph_tanaman[idx_now][i];
+            for(int i = 0;i<n_kota;i++){
+                //Update nilai saat jarak lebih pendek
+                if(!is_final[i] && (graph_kota[idx_now][i]!=int_max) &&
+                (jarak_final[idx_now]+graph_kota[idx_now][i]<jarak_final[i])){
+                    jarak_final[i] = jarak_final[idx_now]+graph_kota[idx_now][i];
                     idx_dilalui[i]=idx_dilalui[idx_now]+1;
                     for(int j=0;j<idx_dilalui[i];j++){
                         if(j==idx_dilalui[i]-1){
@@ -163,29 +172,29 @@ int main (){
                     //printf("Jarak Final[%d] = %d\n",i,jarak_final[i]);
                 }
             }
-            idx_now = idx_process(n_tanaman,jarak_final,is_final);
+            idx_now = idx_process(n_kota,jarak_final,is_final);
         }
-        printf("\nTanaman yang harus dilalui untuk mencapai %s dengan posisi awal %s adalah: \n",nama_tanaman[idx_tujuan],nama_tanaman[idx_awal]);
+        printf("\Kota yang harus dilalui untuk mencapai %s dengan posisi awal %s adalah: \n",nama_kota[idx_tujuan],nama_kota[idx_awal]);
         for(int i=0;i<idx_dilalui[idx_tujuan];i++){
             if(list_dilalui[idx_tujuan][i]!=int_max){
-                printf("%d. %s\n",i+1,nama_tanaman[list_dilalui[idx_tujuan][i]]);
+                printf("%d. %s\n",i+1,nama_kota[list_dilalui[idx_tujuan][i]]);
             }
         }
-        printf("\nJarak antara kedua tanaman tersebut adalah %d meter\n\n",jarak_final[idx_tujuan]);
+        printf("\nJarak antara kedua kota tersebut adalah %d kilometer\n\n",jarak_final[idx_tujuan]);
         /* // Digunakan untuk debugging
         printf("Jarak final: %d\n",jarak_final[idx_tujuan]);
         printf("Indeks Tujuan: %d\n",idx_tujuan);
-        for(int i=0;i<n_tanaman;i++){
+        for(int i=0;i<n_kota;i++){
             printf("Jarak Final[%d] = %d\n",i,jarak_final[i]);
         }
-        for(int i=0;i<n_tanaman;i++){
+        for(int i=0;i<n_kota;i++){
             printf("List dilalui idx %d: ",i);
-            for(int j=0;j<n_tanaman;j++){
+            for(int j=0;j<n_kota;j++){
                 printf("%d ",list_dilalui[i][j]);
             }
             printf("\n");
-        }*/ 
-        printf("Apakah anda masih ingin mengelilingi Kebun Raya Purwodadi? [y/n]: ");
+        }*/
+        printf("Apakah anda masih ingin berkeliling? [y/n]: ");
         scanf(" %c",&progress);
     }
 }
