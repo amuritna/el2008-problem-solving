@@ -1,12 +1,12 @@
 # Fdb version 3
 ["bibtex main"] 0 "main.aux" "main.bbl" "main" 0
-  "C:/Users/USER/AppData/Local/Programs/MiKTeX/bibtex/bib/feupphdteses/references.bib" 1366811700 2206 985e03fb36d872d306e76cfacc160693 ""
   "C:/Users/USER/AppData/Local/Programs/MiKTeX/bibtex/bst/ieeetran/IEEEtran.bst" 1440622569 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
   "main.aux" 0 -1 0 "pdflatex"
+  "references.bib" 1645406952 838 0f9cf3179a5ca276b24976570e7a8ad8 ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1645406877 "c:/Users/USER/Documents/GitHub/el2008-problem-solving/latihan5latex/main.tex" "main.pdf" "main" 1645406877
+["pdflatex"] 1645407443 "c:/Users/USER/Documents/GitHub/el2008-problem-solving/latihan5latex/main.tex" "main.pdf" "main" 1645407443
   "C:/Users/USER/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1645401479 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/USER/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1645259474 10244928 4d5c78abf3daf54a46456337f283ccd9 ""
   "C:/Users/USER/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -54,10 +54,10 @@
   "C:/Users/USER/AppData/Local/Programs/MiKTeX/tex/latex/relsize/relsize.sty" 1365244030 15542 c4cc3164fe24f2f2fbb06eb71b1da4c4 ""
   "C:/Users/USER/AppData/Local/Programs/MiKTeX/tex/latex/tools/xspace.sty" 1636710260 4545 d84d0b20a11b9c36c6ecf45697be591c ""
   "C:/Users/USER/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1636284872 56029 3f7889dab51d620aa43177c391b7b190 ""
-  "c:/Users/USER/Documents/GitHub/el2008-problem-solving/latihan5latex/main.tex" 1645406868 16781 1ffd62e4a4fe87601d9d4d39455e8ac6 ""
-  "main.aux" 1645406877 34 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "c:/Users/USER/Documents/GitHub/el2008-problem-solving/latihan5latex/main.tex" 1645407434 16810 c413cee22473e992ff8c2d3323054351 ""
+  "main.aux" 1645407442 34 3985256e7290058c681f74d7a3565a19 "pdflatex"
   "main.bbl" 0 -1 0 "bibtex main"
-  "main.tex" 1645406868 16781 1ffd62e4a4fe87601d9d4d39455e8ac6 ""
+  "main.tex" 1645407434 16810 c413cee22473e992ff8c2d3323054351 ""
   (generated)
   "main.aux"
   "main.log"
